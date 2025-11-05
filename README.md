@@ -1,3 +1,7 @@
+# IMPORTANT
+First thing first, you have to have Python installed on your device.
+You may download one that is compatible with your operating systems from [Python's official website](https://www.python.org/downloads/)
+
 ## AMQ Tour Fun Stats
 This scripts provides anime distribution by release year for each decade as well how many of a particular song type played in the tour.
 Below is the example output of the script:
