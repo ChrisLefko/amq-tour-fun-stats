@@ -30,7 +30,7 @@ Below is the example output of the script:
    Opening: 91 song(s) [18.06%]
    Ending: 221 song(s) [43.85%]
    Insert: 192 song(s) [38.10%]```
-
+```
 ## How to Use
 1. Put the json files of every game in the tour into the json folder (like you would on iamasiannoob/sakurapianist's stats report script)
 2. If you're running a Windows Operating system, Run the ``run.bat`` file
