@@ -19,19 +19,21 @@ TYPE_LABELS = {1: "Opening", 2: "Ending", 3: "Insert"}
 
 def extract_year(vintage):
     """
-    Extract a 4-digit year from:
-    - string: "Winter 2025"
-    - dict: {"season": "Winter", "year": 2025}
+    Extract year from AMQ vintage field.
+    Supports:
+    - dict format: {"key": "...", "data": {"year": 1999}}
+    - string fallback: "Fall 1999"
     """
     if not vintage:
         return None
 
-    # Case 1: vintage is already a dict with a year field
+    # AMQ JSON format (correct one)
     if isinstance(vintage, dict):
-        year = vintage.get("year")
+        data = vintage.get("data", {})
+        year = data.get("year")
         return int(year) if isinstance(year, int) else None
 
-    # Case 2: vintage is a string
+    # Fallback for string formats
     if isinstance(vintage, str):
         match = re.search(r"(19|20)\d{2}", vintage)
         return int(match.group()) if match else None
