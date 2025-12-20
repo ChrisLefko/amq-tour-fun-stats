@@ -17,14 +17,26 @@ CATEGORY_RANGES = [
 
 TYPE_LABELS = {1: "Opening", 2: "Ending", 3: "Insert"}
 
-
-def extract_year(vintage_str):
-    """Extract a 4-digit year from a string like 'Winter 2025' or 'Fall 1981'."""
-    if not vintage_str:
+def extract_year(vintage):
+    """
+    Extract a 4-digit year from:
+    - string: "Winter 2025"
+    - dict: {"season": "Winter", "year": 2025}
+    """
+    if not vintage:
         return None
-    match = re.search(r"(19|20)\d{2}", vintage_str)
-    return int(match.group()) if match else None
 
+    # Case 1: vintage is already a dict with a year field
+    if isinstance(vintage, dict):
+        year = vintage.get("year")
+        return int(year) if isinstance(year, int) else None
+
+    # Case 2: vintage is a string
+    if isinstance(vintage, str):
+        match = re.search(r"(19|20)\d{2}", vintage)
+        return int(match.group()) if match else None
+
+    return None
 
 def categorize_year(year):
     """Categorize a year into one of the defined ranges."""
